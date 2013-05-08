@@ -1,8 +1,8 @@
 # binaries
 *.exe
 *.o
-
 *.obj
+*.pdb
 
 # archives
 *.7z

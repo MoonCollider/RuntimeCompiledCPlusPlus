@@ -114,6 +114,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D_HAS_ITERATOR_DEBUGGING=0 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,6 +124,7 @@
       </AdditionalDependencies>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Lib>
     <CustomBuildStep>
       <Command>
@@ -139,6 +141,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D_HAS_ITERATOR_DEBUGGING=0 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -148,6 +151,7 @@
       </AdditionalDependencies>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Lib>
     <CustomBuildStep>
       <Command>

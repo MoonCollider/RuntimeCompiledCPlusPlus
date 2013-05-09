@@ -97,6 +97,7 @@
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +117,7 @@
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,6 +138,7 @@
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +161,7 @@
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
+      <AdditionalOptions>/D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

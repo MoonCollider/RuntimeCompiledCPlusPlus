@@ -99,6 +99,7 @@ bool ConsoleGame::Init()
         m_pRuntimeObjectSystem = 0;
         return false;
     }
+	m_pRuntimeObjectSystem->SetAdditionalCompileOptions("/D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 ");
 	m_pRuntimeObjectSystem->GetObjectFactorySystem()->AddListener(this);
 
 

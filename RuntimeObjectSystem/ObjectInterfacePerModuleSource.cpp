@@ -22,6 +22,8 @@ PerModuleInterface* PerModuleInterface::ms_pObjectManager = NULL;
 
 SystemTable* PerModuleInterface::g_pSystemTable = 0;
 
+struct SCommonEnv* gCommonEnv = NULL;
+
 extern "C" 
 #ifdef _WIN32
 	__declspec(dllexport)	//should create file with export import macros etc.
@@ -55,6 +57,7 @@ std::vector<IObjectConstructor*>& PerModuleInterface::GetConstructors()
 void PerModuleInterface::SetSystemTable( SystemTable* pSystemTable )
 {
 	g_pSystemTable = pSystemTable;
+	gCommonEnv = pSystemTable;
 }
 
 PerModuleInterface::PerModuleInterface()

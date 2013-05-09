@@ -63,6 +63,8 @@ public:
     virtual void SetProtectionEnabled( bool bProtectionEnabled_ ) = 0;
 	virtual bool IsProtectionEnabled() const = 0;
     virtual bool TryProtectedFunction( RuntimeProtector* pProtectedObject_ ) = 0;
+
+	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface) = 0;
 };
 
 #endif // IRUNTIMEOBJECTSYSTEM_INCLUDED

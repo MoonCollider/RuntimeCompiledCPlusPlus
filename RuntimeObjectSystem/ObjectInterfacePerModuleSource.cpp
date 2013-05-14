@@ -18,6 +18,12 @@
 // ObjectInterfaceOerDllSource.cpp : Defines the entry point for the DLL application.
 #include "ObjectInterfacePerModule.h"
 
+#ifdef CRYENV_USERSPACE
+	// Pull in the definitions we need to refer to
+  #include "Userspace_StdAfx.h"
+#endif
+
+
 PerModuleInterface* PerModuleInterface::ms_pObjectManager = NULL;
 
 SystemTable* PerModuleInterface::g_pSystemTable = 0;
@@ -58,6 +64,10 @@ void PerModuleInterface::SetSystemTable( SystemTable* pSystemTable )
 {
 	g_pSystemTable = pSystemTable;
 	gCommonEnv = pSystemTable;
+#ifdef CRYENV_USERSPACE
+	gEnv = (SSystemGlobalEnvironment*) pSystemTable->pEngineTable;
+	//gUserspaceEnv = similarly
+#endif
 }
 
 PerModuleInterface::PerModuleInterface()

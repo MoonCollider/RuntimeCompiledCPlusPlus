@@ -66,7 +66,7 @@ void PerModuleInterface::SetSystemTable( SystemTable* pSystemTable )
 	gCommonEnv = pSystemTable;
 #ifdef CRYENV_USERSPACE
 	gEnv = (SSystemGlobalEnvironment*) pSystemTable->pEngineTable;
-	//gUserspaceEnv = similarly
+	gUserspaceEnv = (SUserspaceEnv *) pSystemTable->pUserspaceTable;
 #endif
 }
 

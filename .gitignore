@@ -37,6 +37,12 @@
 # misc
 *.bak
 
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
 # Intel VTune Amplifier XE Results
 My Amplifier XE Results - SimpleTest/
 

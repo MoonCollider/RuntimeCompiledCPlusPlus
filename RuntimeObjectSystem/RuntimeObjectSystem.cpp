@@ -87,7 +87,6 @@ bool RuntimeObjectSystem::Initialise( ICompilerLogger * pLogger, SystemTable* pS
 
 
 	SetupObjectConstructors(pPerModuleInterface);
-
 	//add this dir to list of include dirs
 	FileSystemUtils::Path includeDir( __FILE__ );
 	includeDir = includeDir.ParentPath();

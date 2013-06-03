@@ -205,7 +205,7 @@ void RuntimeObjectSystem::StartRecompile()
 #else
     char tempPath[] = "/tmp/RCCppTempDylibXXXXXX";
     int fileDesc = mkstemp(tempPath);
-    assert( fileDesc != -1 ); //TODO: should really handle the error
+    AU_ASSERT( fileDesc != -1 ); //TODO: should really handle the error
     close( fileDesc ); //we don't actually want to make the file as yet
     m_CurrentlyCompilingModuleName = tempPath;
     

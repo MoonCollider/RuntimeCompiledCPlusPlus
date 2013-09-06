@@ -39,7 +39,8 @@ FileMonitor::FileMonitor()
 
 FileMonitor::~FileMonitor()
 {
-	delete m_pFileWatcher;
+	// !! TODO: Temporary fix to crash when unloading Kythera.
+	//delete m_pFileWatcher;
 }
 
 void FileMonitor::Update(	float fDeltaTime )

@@ -25,6 +25,8 @@ struct IObjectFactorySystem;
 struct IFileChangeNotifier;
 class  BuildTool;
 struct RuntimeProtector;
+struct SCommonEnv;
+typedef SCommonEnv SystemTable; //This is the interface to your own engine code, which you need to define yourself if required.
 
 struct IRuntimeObjectSystem
 {
@@ -59,6 +61,11 @@ public:
     // see Compiler::SetFastCompileMode
     virtual void SetFastCompileMode( bool bFast ) = 0;
 
+    // clean up temporary object files
+    virtual void CleanObjectFiles() const = 0;
+
+	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface) = 0;
+
 	//ensure subclasses are deleted correctly
 	virtual ~IRuntimeObjectSystem(){};
 
@@ -66,8 +73,6 @@ public:
     virtual void SetProtectionEnabled( bool bProtectionEnabled_ ) = 0;
 	virtual bool IsProtectionEnabled() const = 0;
     virtual bool TryProtectedFunction( RuntimeProtector* pProtectedObject_ ) = 0;
-
-	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface) = 0;
 };
 
 #endif // IRUNTIMEOBJECTSYSTEM_INCLUDED

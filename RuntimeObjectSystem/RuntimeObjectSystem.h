@@ -95,6 +95,15 @@ public:
         }
     }
 
+    virtual void CleanObjectFiles() const
+    {
+        if( m_pBuildTool )
+        {
+            m_pBuildTool->Clean();
+        }
+    }
+
+
 	virtual bool GetLastLoadModuleSuccess() const
 	{
 		return m_bLastLoadModuleSuccess;
@@ -104,6 +113,8 @@ public:
          return m_TotalLoadedModulesEver;
      }
  
+	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface);
+
      // exception handling to catch and protect main app from crashing when using runtime compiling
     virtual void SetProtectionEnabled( bool bProtectionEnabled_ );
 	
@@ -113,7 +124,6 @@ public:
     }
     virtual bool TryProtectedFunction( RuntimeProtector* pProtectedObject_ );
 
-	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface);
 
 	// IFileChangeListener
 

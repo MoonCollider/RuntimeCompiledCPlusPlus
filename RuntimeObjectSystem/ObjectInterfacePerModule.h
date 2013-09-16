@@ -88,8 +88,8 @@ public:
         IRuntimeLinkLibraryList*        pLinkLibraryList,
         bool                            bIsSingleton,
         bool                            bIsAutoConstructSingleton)
-		: m_bIsSingleton(               bIsSingleton )
-		, m_bIsAutoConstructSingleton(  bIsAutoConstructSingleton )
+        : m_bIsSingleton(               bIsSingleton )
+        , m_bIsAutoConstructSingleton(  bIsAutoConstructSingleton )
 		, m_FileName(                   Filename )
 		, m_pIncludeFileList(           pIncludeFileList_ )
 		, m_pSourceDependencyList(      pSourceDependencyList_ )

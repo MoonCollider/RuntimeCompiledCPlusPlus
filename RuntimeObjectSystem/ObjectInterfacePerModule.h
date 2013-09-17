@@ -45,6 +45,10 @@ public:
 		return g_pSystemTable;
 	}
 
+#ifdef CHECK_KYTHERA_RCCPP_IN_USE
+	virtual bool DoRuntimeCompile() { return g_pSystemTable->bUseRCCPP; }
+#endif
+
 	virtual const std::vector<const char*>& GetRequiredSourceFiles() const;
 	virtual void AddRequiredSourceFiles( const char* file_ );
     virtual void SetModuleFileName( const char* name )

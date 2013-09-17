@@ -353,6 +353,10 @@ void RuntimeObjectSystem::SetupObjectConstructors(IPerModuleInterface* pPerModul
 	for (size_t i=0, iMax=objectConstructors.size(); i<iMax; ++i)
 	{
 		constructors[i] = objectConstructors[i];
+
+		if (!pPerModuleInterface->DoRuntimeCompile())
+			continue;
+
 		Path filePath = objectConstructors[i]->GetFileName();
         filePath = filePath.GetCleanPath();
         AddToRuntimeFileList( filePath.c_str() );

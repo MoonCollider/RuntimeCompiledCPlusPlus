@@ -24,6 +24,7 @@
 #include "RuntimeInclude.h"
 #include "RuntimeLinkLibrary.h"
 #include "RuntimeSourceDependency.h"
+#include "../../../API/CommonEnv.h"
 #include <string>
 #include <vector>
 
@@ -45,9 +46,7 @@ public:
 		return g_pSystemTable;
 	}
 
-#ifdef CHECK_KYTHERA_RCCPP_IN_USE
-	virtual bool DoRuntimeCompile() { return g_pSystemTable->bUseRCCPP; }
-#endif
+	virtual bool DoRuntimeCompile() { return gCommonEnv->bUseRCCPP; }
 
 	virtual const std::vector<const char*>& GetRequiredSourceFiles() const;
 	virtual void AddRequiredSourceFiles( const char* file_ );

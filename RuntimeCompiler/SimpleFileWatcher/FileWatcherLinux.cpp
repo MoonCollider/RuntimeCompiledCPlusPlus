@@ -75,7 +75,7 @@ namespace FW
 	{
 		const char* pDir = directory.c_str();
 		int wd = inotify_add_watch (mFD, pDir,
-			IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+			IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE | IN_MODIFY | IN_ATTRIB );
 
 		WatchStruct* pWatch = new WatchStruct();
 		pWatch->mListener = watcher;
@@ -154,7 +154,7 @@ namespace FW
 		if(!watch->mListener)
 			return;
 
-		if(IN_CLOSE_WRITE & action)
+		if( (IN_CLOSE_WRITE & action) || (IN_MODIFY & action) || ( IN_ATTRIB & action ) )
 		{
 			watch->mListener->handleFileAction(watch->mWatchID, watch->mDirName, filename,
 								Actions::Modified);

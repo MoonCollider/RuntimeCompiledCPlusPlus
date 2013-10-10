@@ -167,7 +167,7 @@ public:
 		return ADDITIONAL_COMPILER_OPTIONS;
 #else
 		return "";
-#endif;
+#endif
 	}
 
 	virtual const char* GetIncludeFile( size_t Num_ ) const

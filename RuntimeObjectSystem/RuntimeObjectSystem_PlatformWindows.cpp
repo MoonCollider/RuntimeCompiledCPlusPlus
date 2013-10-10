@@ -187,11 +187,6 @@ bool RuntimeObjectSystem::TryProtectedFunction( RuntimeProtector* pProtectedObje
 
 bool RuntimeObjectSystem::TestBuildWaitAndUpdate()
 {
-    Sleep( 100 );
-    MSG msg;
-    while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
-    {
-        DispatchMessage( &msg );
-    }
+    Sleep( 10 );
     return true;
 }

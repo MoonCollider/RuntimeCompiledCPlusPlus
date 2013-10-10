@@ -274,13 +274,24 @@ void RuntimeObjectSystem::StartRecompile()
 		}
 	}
 
-
+	//Add additional compile options
+	std::string compileOptions = m_CompileOptions;
+	buildListSize = ourBuildFileList.size();
+	for( size_t i = 0; i < buildListSize; ++ i )
+	{
+		// Concatenate the options.  This doesn't really work - to fix!!
+		std::map<FileSystemUtils::Path, const char*>::iterator it = m_AdditionalCompileFlagsMap.find(ourBuildFileList[i].filePath);
+		if (it != m_AdditionalCompileFlagsMap.end())
+		{
+			compileOptions += it->second;
+		}
+	}
 
 	m_pBuildTool->BuildModule(	ourBuildFileList,
 								m_IncludeDirList,
 								m_LibraryDirList,
 								linkLibraryList,
-								m_CompileOptions.c_str(),
+								compileOptions.c_str(),
 								m_LinkOptions.c_str(),
 								m_CurrentlyCompilingModuleName );
 }
@@ -384,6 +395,10 @@ void RuntimeObjectSystem::SetupObjectConstructors(IPerModuleInterface* pPerModul
             m_RuntimeSourceDependencyMap.erase( filePath );
 		}
 
+		// Store additional compile flags
+		const char* additionalCompileOptions = objectConstructors[i]->GetAdditionalCompilerOptions();
+		m_AdditionalCompileFlagsMap[filePath] = additionalCompileOptions;
+
         //we need the compile path for some platforms where the __FILE__ path is relative to the compile path
         FileSystemUtils::Path compileDir = objectConstructors[i]->GetCompiledPath();
 
@@ -441,7 +456,6 @@ void RuntimeObjectSystem::SetupObjectConstructors(IPerModuleInterface* pPerModul
                 }
 			}
 		}
-
 	}
 	m_pObjectFactorySystem->AddConstructors( constructors );
 }

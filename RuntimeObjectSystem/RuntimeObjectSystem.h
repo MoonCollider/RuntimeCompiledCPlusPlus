@@ -175,6 +175,7 @@ private:
 	TFileToFileMap			m_RuntimeIncludeMap;
 	TFileToFileMap			m_RuntimeLinkLibraryMap;
 	TFileToFileMap			m_RuntimeSourceDependencyMap;
+	std::map<FileSystemUtils::Path, const char*> m_AdditionalCompileFlagsMap;
 	bool					m_bAutoCompile;
 	FileSystemUtils::Path m_CurrentlyCompilingModuleName;
 	std::vector<BuildTool::FileToBuild> m_BuildFileList;

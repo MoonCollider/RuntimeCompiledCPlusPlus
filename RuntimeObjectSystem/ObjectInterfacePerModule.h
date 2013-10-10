@@ -163,6 +163,15 @@ public:
 		#endif
    }
 
+	virtual const char* GetAdditionalCompilerOptions()
+	{
+#ifdef ADDITIONAL_COMPILER_OPTIONS
+		return ADDITIONAL_COMPILER_OPTIONS;
+#else
+		return "";
+#endif;
+	}
+
 	virtual const char* GetIncludeFile( size_t Num_ ) const
 	{
 		if( m_pIncludeFileList )

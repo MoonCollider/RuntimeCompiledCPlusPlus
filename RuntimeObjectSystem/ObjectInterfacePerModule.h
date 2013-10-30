@@ -24,7 +24,6 @@
 #include "RuntimeInclude.h"
 #include "RuntimeLinkLibrary.h"
 #include "RuntimeSourceDependency.h"
-#include "../../../API/CommonEnv.h"
 #include <string>
 #include <vector>
 
@@ -45,8 +44,6 @@ public:
 	{
 		return g_pSystemTable;
 	}
-
-	virtual bool DoRuntimeCompile() { return gCommonEnv->bUseRCCPP; }
 
 	virtual const std::vector<const char*>& GetRequiredSourceFiles() const;
 	virtual void AddRequiredSourceFiles( const char* file_ );

@@ -102,7 +102,6 @@ struct IPerModuleInterface
 	virtual const std::vector<const char*>& GetRequiredSourceFiles() const = 0;
 	virtual void AddRequiredSourceFiles( const char* file_ ) = 0;
     virtual void SetModuleFileName( const char* name ) = 0;
-	virtual bool DoRuntimeCompile() { return false; }
 	virtual ~IPerModuleInterface() {}
 };
 

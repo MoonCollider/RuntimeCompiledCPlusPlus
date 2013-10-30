@@ -438,7 +438,7 @@ void RuntimeObjectSystem::SetupRuntimeFileTracking(const IAUDynArray<IObjectCons
 		}
 
 		// Store additional compile flags
-		const char* additionalCompileOptions = objectConstructors[i]->GetAdditionalCompilerOptions();
+		const char* additionalCompileOptions = constructors_[i]->GetAdditionalCompilerOptions();
 		m_AdditionalCompileFlagsMap[filePath] = additionalCompileOptions;
 
         //we need the compile path for some platforms where the __FILE__ path is relative to the compile path

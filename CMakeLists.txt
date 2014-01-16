@@ -1,12 +1,14 @@
+project(RunTimeCompiledC++)
+
 cmake_minimum_required(VERSION 2.8)
 
 #
 # Options
 #
-option(BUILD_EXAMPLES "Build example applications" ON)
+option(BUILD_EXAMPLES "Build example applications" OFF)
 
 if(UNIX)
-	set(KYTHERA_BINARY_DIR ${CMAKE_BINARY_DIR}/../../../../Bin64/)
+    set(KYTHERA_BINARY_DIR ${PROJECT_SOURCE_DIR}/../../../../Bin64/)
 	set(BUILD_TYPE SHARED)
 	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${KYTHERA_BINARY_DIR})
 	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${KYTHERA_BINARY_DIR})

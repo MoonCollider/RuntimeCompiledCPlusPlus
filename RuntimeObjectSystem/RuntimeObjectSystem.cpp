@@ -43,8 +43,13 @@ RuntimeObjectSystem::RuntimeObjectSystem()
 	: m_pCompilerLogger(0)
 	, m_pSystemTable(0)
 	, m_pObjectFactorySystem(new ObjectFactorySystem())
+#ifdef RCCPPOFF
+	, m_pFileChangeNotifier(NULL)
+	, m_pBuildTool( NULL )
+#else
 	, m_pFileChangeNotifier(new FileChangeNotifier())
 	, m_pBuildTool(new BuildTool())
+#endif
 	, m_bCompiling( false )
 	, m_bLastLoadModuleSuccess( false )
 	, m_bAutoCompile( true )
@@ -57,11 +62,17 @@ RuntimeObjectSystem::RuntimeObjectSystem()
 
 RuntimeObjectSystem::~RuntimeObjectSystem()
 {
+#ifndef RCCPPOFF
 	m_pFileChangeNotifier->RemoveListener(this);
+#endif
+
     DeletePlatformImpl();
 	delete m_pObjectFactorySystem;
+
+#ifndef RCCPPOFF
 	delete m_pFileChangeNotifier;
 	delete m_pBuildTool;
+#endif
 
 	// Note we do not delete compiler logger, creator should do this
 }
@@ -72,7 +83,9 @@ bool RuntimeObjectSystem::Initialise( ICompilerLogger * pLogger, SystemTable* pS
 	m_pCompilerLogger = pLogger;
 	m_pSystemTable = pSystemTable;
 
+#ifndef RCCPPOFF
 	m_pBuildTool->Initialise(m_pCompilerLogger);
+#endif
 
 	// We start by using the code in the current module
 	IPerModuleInterface* pPerModuleInterface = PerModuleInterface::GetInstance();
@@ -169,7 +182,11 @@ void RuntimeObjectSystem::OnFileChange(const IAUDynArray<const char*>& filelist)
 
 bool RuntimeObjectSystem::GetIsCompiledComplete()
 {
+#ifndef RCCPPOFF
 	return m_bCompiling && m_pBuildTool->GetIsComplete();
+#else
+	return false;
+#endif
 }
 
 void RuntimeObjectSystem::CompileAll( bool bForceRecompile )
@@ -213,25 +230,30 @@ void RuntimeObjectSystem::SetAutoCompile( bool autoCompile )
 // RuntimeObjectSystem::AddToRuntimeFileList - filename should be cleaned of "/../" etc, see FileSystemUtils::Path::GetCleanPath()
 void RuntimeObjectSystem::AddToRuntimeFileList( const char* filename )
 {
+#ifndef RCCPPOFF
 	TFileList::iterator it = std::find( m_RuntimeFileList.begin(), m_RuntimeFileList.end(), filename );
 	if ( it == m_RuntimeFileList.end() )
 	{
 		m_RuntimeFileList.push_back( filename );
         m_pFileChangeNotifier->Watch( filename, this );
 	}
+#endif
 }
 
 void RuntimeObjectSystem::RemoveFromRuntimeFileList( const char* filename )
 {
+#ifndef RCCPPOFF
 	TFileList::iterator it = std::find( m_RuntimeFileList.begin(), m_RuntimeFileList.end(), filename );
 	if ( it != m_RuntimeFileList.end() )
 	{
 		m_RuntimeFileList.erase( it );
 	}
+#endif
 }
 
 void RuntimeObjectSystem::StartRecompile()
 {
+#ifndef RCCPPOFF
 	m_bCompiling = true;
 	m_pCompilerLogger->LogInfo( "Compiling...\n");
 
@@ -315,6 +337,7 @@ void RuntimeObjectSystem::StartRecompile()
 								compileOptions.c_str(),
 								m_LinkOptions.c_str(),
 								m_CurrentlyCompilingModuleName );
+#endif
 }
 
 bool RuntimeObjectSystem::LoadCompiledModule()

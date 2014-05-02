@@ -89,18 +89,22 @@ public:
 
     virtual void SetFastCompileMode( bool bFast )
     {
+#ifndef RCCPPOFF
         if( m_pBuildTool )
         {
             m_pBuildTool->SetFastCompileMode( bFast );
         }
+#endif
     }
 
     virtual void CleanObjectFiles() const
     {
+#ifndef RCCPPOFF
         if( m_pBuildTool )
         {
             m_pBuildTool->Clean();
         }
+#endif
     }
 
 

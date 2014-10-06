@@ -51,6 +51,7 @@
     <SccLocalPath>..\..\..\..\..\..\..</SccLocalPath>
     <SccProvider>MSSCCI:Perforce SCM</SccProvider>
     <StaticLink>true</StaticLink>
+    <ProjectName>RuntimeCompiler</ProjectName>
   </PropertyGroup>
   <Import Project="$(ProjectDir)..\..\..\..\..\Solutions\Common.Base.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

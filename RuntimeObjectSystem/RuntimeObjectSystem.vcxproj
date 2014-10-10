@@ -67,17 +67,16 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FA4E24F1-885C-406B-89A8-436F28D090B2}</ProjectGuid>
     <RootNamespace>Systems</RootNamespace>
-    <SccProjectName>Perforce Project</SccProjectName>
+    <SccProjectName>
+    </SccProjectName>
     <SccAuxPath>
     </SccAuxPath>
-    <SccLocalPath>..\..\..\..\..\..\..</SccLocalPath>
-    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
     <StaticLink>true</StaticLink>
   </PropertyGroup>
-  <Import Project="$(ProjectDir)..\..\..\..\..\Solutions\Common.Base.props" />
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Import Project="$(PropsFolder)Common.props" />
   <ItemDefinitionGroup>
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -151,6 +150,8 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -194,6 +195,51 @@
     <Import Project="..\Aurora_x64.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
+    <OutDir>$(SolutionDir)\Bin64\$(Configuration)\</OutDir>
+    <IntDir>
+    </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AlmostRelease|x64'">
+    <OutDir>$(SolutionDir)\Bin64\$(Configuration)\</OutDir>
+    <IntDir>
+    </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)\Bin64\$(Configuration)\</OutDir>
+    <IntDir>
+    </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)\Bin64\$(Configuration)\</OutDir>
+    <IntDir>
+    </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
+    <OutDir>$(SolutionDir)\Bin64\$(Configuration)\</OutDir>
+    <IntDir>
+    </IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <OutDir>$(SolutionDir)\Bin32\$(Configuration)</OutDir>
+    <IntDir />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AlmostRelease|Win32'">
+    <OutDir>$(SolutionDir)\Bin32\$(Configuration)</OutDir>
+    <IntDir />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\Bin32\$(Configuration)</OutDir>
+    <IntDir />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\Bin32\$(Configuration)</OutDir>
+    <IntDir />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|Win32'">
+    <OutDir>$(SolutionDir)\Bin32\$(Configuration)</OutDir>
+    <IntDir />
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

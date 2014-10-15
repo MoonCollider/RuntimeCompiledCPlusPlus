@@ -64,17 +64,14 @@
     <ClCompile Include="RuntimeObjectSystem_PlatformWindows.cpp" />
     <ClCompile Include="SimpleSerializer\SimpleSerializer.cpp" />
   </ItemGroup>
-  <PropertyGroup Label="Globals">
+   <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{FA4E24F1-885C-406B-89A8-436F28D090B2}</ProjectGuid>
-    <RootNamespace>Systems</RootNamespace>
-    <SccProjectName>
-    </SccProjectName>
+    <SccProjectName>Perforce Project</SccProjectName>
     <SccAuxPath>
     </SccAuxPath>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccProvider>
-    </SccProvider>
+    <SccLocalPath>..\..\..\..\..\..\..</SccLocalPath>
+    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
     <StaticLink>true</StaticLink>
   </PropertyGroup>
   <ItemDefinitionGroup>
@@ -198,6 +195,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
     <OutDir>$(SolutionDir)..\..\Bin64\</OutDir>
     <IntDir>$(SolutionDir)..\..\BinTemp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_r</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AlmostRelease|x64'">
     <OutDir>$(SolutionDir)..\..\Bin64\</OutDir>
@@ -216,10 +214,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
     <OutDir>$(SolutionDir)..\..\Bin64\</OutDir>
     <IntDir>$(SolutionDir)..\..\BinTemp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_r</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
     <OutDir>$(SolutionDir)..\..\Bin32\</OutDir>
     <IntDir>$(SolutionDir)..\..\BinTemp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_r</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AlmostRelease|Win32'">
     <OutDir>$(SolutionDir)..\..\Bin32\</OutDir>
@@ -238,6 +238,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|Win32'">
     <OutDir>$(SolutionDir)..\..\Bin32\</OutDir>
     <IntDir>$(SolutionDir)..\..\BinTemp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)_r</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

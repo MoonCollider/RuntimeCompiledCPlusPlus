@@ -753,7 +753,7 @@ static int TestBuildFile( ICompilerLogger* pLog, RuntimeObjectSystem* pRTObjSys,
                     return -0xD1E;
                 }
             }
-            int numCurrLoadedModules = pRTObjSys->GetNumberLoadedModules();
+            unsigned int numCurrLoadedModules = pRTObjSys->GetNumberLoadedModules();
             if( pRTObjSys->LoadCompiledModule() )
             {
                 if( !callback->TestBuildCallback( file.c_str(), TESTBUILDRRESULT_SUCCESS ) ) { return -0xD1E; }

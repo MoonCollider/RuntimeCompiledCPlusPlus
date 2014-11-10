@@ -255,7 +255,9 @@ void RuntimeObjectSystem::StartRecompile()
 {
 #ifndef RCCPPOFF
 	m_bCompiling = true;
-	m_pCompilerLogger->LogInfo( "Compiling...\n");
+
+	// !! Temporarily raised to warning level to increase visibility of Runtime recompile
+	m_pCompilerLogger->LogWarning("Runtime recompilation started...\n");
 
 	//Use a temporary filename for the dll
 #ifdef _WIN32
@@ -383,7 +385,8 @@ bool RuntimeObjectSystem::LoadCompiledModule()
 	pPerModuleInterfaceProcAdd()->SetSystemTable( m_pSystemTable );
 	m_Modules.push_back( module );
 
-	m_pCompilerLogger->LogInfo( "Compilation Succeeded\n");
+	// !! Temporarily raised to warning level to increase visibility of Runtime recompile
+	m_pCompilerLogger->LogWarning( "Compilation Succeeded\n");
     ++m_TotalLoadedModulesEver;
 
 	SetupObjectConstructors(pPerModuleInterfaceProcAdd());

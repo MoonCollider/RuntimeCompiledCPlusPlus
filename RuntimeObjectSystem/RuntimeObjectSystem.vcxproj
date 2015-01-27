@@ -64,14 +64,17 @@
     <ClCompile Include="RuntimeObjectSystem_PlatformWindows.cpp" />
     <ClCompile Include="SimpleSerializer\SimpleSerializer.cpp" />
   </ItemGroup>
-   <PropertyGroup Label="Globals">
+  <PropertyGroup Label="Globals">
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{FA4E24F1-885C-406B-89A8-436F28D090B2}</ProjectGuid>
-    <SccProjectName>Perforce Project</SccProjectName>
+    <SccProjectName>
+    </SccProjectName>
     <SccAuxPath>
     </SccAuxPath>
-    <SccLocalPath>..\..\..\..\..\..\..</SccLocalPath>
-    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
     <StaticLink>true</StaticLink>
   </PropertyGroup>
   <ItemDefinitionGroup>

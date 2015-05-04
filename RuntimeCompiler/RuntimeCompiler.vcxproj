@@ -123,6 +123,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(SolutionDir)\Kythera.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -165,16 +166,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Aurora_x64.props" />
   </ImportGroup>
-  <PropertyGroup Condition="'$(Platform)'=='Win32'"> 
-    <_PropertySheetDisplayName>KytheraInternal</_PropertySheetDisplayName>
-    <OutDir>$(ProjectDir)..\..\..\..\..\Binaries\Win32\</OutDir>
-    <IntDir>$(ProjectDir)..\..\..\..\..\..\..\..\..\Engine\Intermediate\Build\Win32\Kythera\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)'=='x64'">
-    <_PropertySheetDisplayName>KytheraInternal</_PropertySheetDisplayName>
-    <OutDir>$(ProjectDir)..\..\..\..\..\Binaries\Win64\</OutDir>
-    <IntDir>$(ProjectDir)..\..\..\..\..\..\..\..\..\Engine\Intermediate\Build\Win64\Kythera\$(Configuration)\$(ProjectName)\</IntDir>
-  </PropertyGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
     <TargetName>$(ProjectName)_r</TargetName>

@@ -20,7 +20,7 @@
 
 #ifdef CRYENV_USERSPACE
 	// Pull in the definitions we need to refer to
-  #include "Userspace_StdAfx.h"
+  #include "CIGAISystem_StdAfx.h"
 #endif
 
 

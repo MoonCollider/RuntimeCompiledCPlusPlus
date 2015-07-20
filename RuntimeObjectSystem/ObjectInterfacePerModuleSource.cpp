@@ -28,7 +28,7 @@ PerModuleInterface* PerModuleInterface::ms_pObjectManager = NULL;
 
 SystemTable* PerModuleInterface::g_pSystemTable = 0;
 
-struct SCommonEnv* gCommonEnv = NULL;
+struct SKytheraEnv* gKytheraEnv = NULL;
 
 extern "C" 
 #ifdef _WIN32
@@ -63,7 +63,7 @@ std::vector<IObjectConstructor*>& PerModuleInterface::GetConstructors()
 void PerModuleInterface::SetSystemTable( SystemTable* pSystemTable )
 {
 	g_pSystemTable = pSystemTable;
-	gCommonEnv = pSystemTable;
+	gKytheraEnv = pSystemTable;
 #ifdef CRYENV_USERSPACE
 	gEnv = (SSystemGlobalEnvironment*) pSystemTable->pEngineTable;
 	gUserspaceEnv = (SUserspaceEnv *) pSystemTable->pUserspaceTable;

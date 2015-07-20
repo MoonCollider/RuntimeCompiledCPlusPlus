@@ -25,8 +25,8 @@ struct IObjectFactorySystem;
 struct IFileChangeNotifier;
 class  BuildTool;
 struct RuntimeProtector;
-struct SCommonEnv;
-typedef SCommonEnv SystemTable; //This is the interface to your own engine code, which you need to define yourself if required.
+struct SKytheraEnv;
+typedef SKytheraEnv SystemTable; //This is the interface to your own engine code, which you need to define yourself if required.
 
 enum TestBuildResult
 {

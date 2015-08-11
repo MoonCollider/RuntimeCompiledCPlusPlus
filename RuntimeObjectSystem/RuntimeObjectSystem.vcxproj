@@ -209,7 +209,7 @@
     <TargetName>$(ProjectName)_r</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
-    <TargetName>$(ProjectName)_r</TargetName>
+    <TargetName>$(ProjectName)_dev</TargetName>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">

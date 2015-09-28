@@ -31,7 +31,10 @@
     #include <sys/utime.h>
 	#define WIN32_LEAN_AND_MEAN
     #define NOMINMAX
+    #pragma warning(push)
+    #pragma warning(disable:28301)
     #include <windows.h>
+    #pragma warning(pop)
 	#undef GetObject
     #undef GetCurrentTime
 

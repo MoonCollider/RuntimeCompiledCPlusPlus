@@ -158,7 +158,10 @@ namespace FW
 			}
 			else
 			{
-				CloseHandle(pWatch->mOverlapped.hEvent);
+				if (pWatch->mOverlapped.hEvent)
+				{
+					CloseHandle(pWatch->mOverlapped.hEvent);
+				}
 				CloseHandle(pWatch->mDirHandle);
 			}
 		}
@@ -349,6 +352,7 @@ namespace FW
 			fwAction = Actions::Delete;
 			break;
 		case FILE_ACTION_MODIFIED:
+		default:
 			fwAction = Actions::Modified;
 			break;
 		};

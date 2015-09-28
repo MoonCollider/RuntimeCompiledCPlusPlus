@@ -73,6 +73,14 @@ public:
 		ZeroMemory( &si, sizeof(si) );
 		si.cb = sizeof(si);
 
+		HANDLE hOutputReadTmp = nullptr;
+		HANDLE hOutputWrite = nullptr;
+		HANDLE hErrorWrite = nullptr;
+		HANDLE hOutputRead = nullptr;
+		HANDLE hInputRead = nullptr;
+		HANDLE hInputWriteTmp = nullptr;
+		HANDLE hInputWrite = nullptr;
+
 #ifndef _WIN64
 		std::string cmdSetParams = "@PROMPT $ \n\"" + m_VSPath + "Vcvarsall.bat\" x86\n";
 #else
@@ -89,7 +97,6 @@ public:
 		//redirection of output
 		si.dwFlags = STARTF_USESTDHANDLES | STARTF_USESHOWWINDOW;
 		si.wShowWindow = SW_HIDE;
-		HANDLE hOutputReadTmp,hOutputWrite;
 		if (!CreatePipe(&hOutputReadTmp,&hOutputWrite,&sa,20*1024))
 		{
 			if( m_pLogger ) m_pLogger->LogError("[RuntimeCompiler] Failed to create output redirection pipe\n");
@@ -100,7 +107,6 @@ public:
 		// Create a duplicate of the output write handle for the std error
 		// write handle. This is necessary in case the child application
 		// closes one of its std output handles.
-		HANDLE hErrorWrite;
 		if (!DuplicateHandle(GetCurrentProcess(),hOutputWrite,
 							   GetCurrentProcess(),&hErrorWrite,0,
 							   TRUE,DUPLICATE_SAME_ACCESS))
@@ -115,7 +121,6 @@ public:
 		// the Properties to FALSE. Otherwise, the child inherits the
 		// properties and, as a result, non-closeable handles to the pipes
 		// are created.
- 		HANDLE hOutputRead;
  		if( si.hStdOutput )
 		{
 			 if (!DuplicateHandle(GetCurrentProcess(),hOutputReadTmp,
@@ -130,7 +135,6 @@ public:
 		}
 
 
-		HANDLE hInputRead,hInputWriteTmp,hInputWrite;
 		// Create a pipe for the child process's STDIN. 
 		if (!CreatePipe(&hInputRead, &hInputWriteTmp, &sa, 4096))
 		{
@@ -194,12 +198,12 @@ public:
 
 
 	ERROR_EXIT:
-		CloseHandle( hOutputReadTmp );
-		hOutputReadTmp = NULL;
-		CloseHandle( hOutputWrite );
-		hOutputWrite = NULL;
-		CloseHandle( hErrorWrite );
-		hErrorWrite = NULL;
+		if (hOutputReadTmp)
+			CloseHandle(hOutputReadTmp);
+		if (hOutputWrite)
+			CloseHandle(hOutputWrite);
+		if (hErrorWrite)
+			CloseHandle(hErrorWrite);
 	}
 
     void CleanupProcessAndPipes()
@@ -415,7 +419,7 @@ void GetPathsOfVisualStudioInstalls( std::vector<VSVersionInfo>* pVersions )
     // we start searching for a compatible compiler from the current version backwards
     int startVersion = NUMNAMESTOCHECK - 1;
 	//switch around prefered compiler to the one we've used to compile this file
-	const unsigned int MSCVERSION = _MSC_VER;
+	unsigned int MSCVERSION = _MSC_VER;
 	switch( MSCVERSION )
 	{
 	case 1400:	//VS 2005
@@ -437,12 +441,7 @@ void GetPathsOfVisualStudioInstalls( std::vector<VSVersionInfo>* pVersions )
 		assert( false ); //unsupported compiler
 	}
 
-
-
-	char value[MAX_PATH];
-	DWORD size = MAX_PATH;
-
-	HKEY key;
+	HKEY key = nullptr;
 	LONG retKeyVal = RegOpenKeyExA(
 				  HKEY_LOCAL_MACHINE,	//__in        HKEY hKey,
 				  keyName.c_str(),			//__in_opt    LPCTSTR lpSubKey,
@@ -451,37 +450,42 @@ void GetPathsOfVisualStudioInstalls( std::vector<VSVersionInfo>* pVersions )
 				  &key					//__out       PHKEY phkResult
 				);
 
-    int loopCount = 1;
-    if( startVersion != NUMNAMESTOCHECK - 1 )
-    {
-        // we potentially need to restart search from top
-        loopCount = 2;
-    }
-    for( int loop = 0; loop < loopCount; ++loop )
-    {
-	    for( int i = startVersion; i >= 0; --i )
-	    {
+	if (retKeyVal == ERROR_SUCCESS)
+	{
+		int loopCount = 1;
+		if (startVersion != NUMNAMESTOCHECK - 1)
+		{
+			// we potentially need to restart search from top
+			loopCount = 2;
+		}
+		for (int loop = 0; loop < loopCount; ++loop)
+		{
+			for (int i = startVersion; i >= 0; --i)
+			{
+				char value[MAX_PATH];
+				DWORD size = MAX_PATH;
 
-		    LONG retVal = RegQueryValueExA(
-					      key,					//__in         HKEY hKey,
-					      valueName[i].c_str(),	//__in_opt     LPCTSTR lpValueName,
-					      NULL,					//__reserved   LPDWORD lpReserved,
-					      NULL ,				//__out_opt    LPDWORD lpType,
-					      (LPBYTE)value,			//__out_opt    LPBYTE lpData,
-					      &size					//__inout_opt  LPDWORD lpcbData
-					    );
-		    if( ERROR_SUCCESS == retVal )
-		    {
-			    VSVersionInfo vInfo;
-			    vInfo.Version = i + 8;
-			    vInfo.Path = value;
-			    pVersions->push_back( vInfo );
-		    }
-	    }
-        startVersion =  NUMNAMESTOCHECK - 1; // if we loop around again make sure it's from the top
-    }
+				LONG retVal = RegQueryValueExA(
+					key,					//__in         HKEY hKey,
+					valueName[i].c_str(),	//__in_opt     LPCTSTR lpValueName,
+					NULL,					//__reserved   LPDWORD lpReserved,
+					NULL,				//__out_opt    LPDWORD lpType,
+					(LPBYTE)value,			//__out_opt    LPBYTE lpData,
+					&size					//__inout_opt  LPDWORD lpcbData
+					);
+				if (ERROR_SUCCESS == retVal)
+				{
+					VSVersionInfo vInfo;
+					vInfo.Version = i + 8;
+					vInfo.Path = value;
+					pVersions->push_back(vInfo);
+				}
+			}
+			startVersion = NUMNAMESTOCHECK - 1; // if we loop around again make sure it's from the top
+		}
 
-	RegCloseKey( key );
+		RegCloseKey(key);
+	}
 
 	return;
 }

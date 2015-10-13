@@ -332,7 +332,7 @@ public:
 	void* operator new(size_t size)
 	{
 		size_t align = __alignof__( TActual<T> );
-		void* pRet;
+		void* pRet = 0;
 		int retval = posix_memalign( &pRet, align, size );
 		(void)retval;	//unused
 		return pRet;

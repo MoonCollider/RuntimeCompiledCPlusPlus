@@ -15,6 +15,8 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
+#if defined(_WIN32)
+
 #include "RuntimeProtector.h"
 #include "RuntimeObjectSystem.h"
 
@@ -190,3 +192,5 @@ bool RuntimeObjectSystem::TestBuildWaitAndUpdate()
     Sleep( 10 );
     return true;
 }
+
+#endif // #if defined(_WIN32)

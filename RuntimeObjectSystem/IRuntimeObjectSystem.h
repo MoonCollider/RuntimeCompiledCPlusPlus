@@ -98,6 +98,7 @@ struct IRuntimeObjectSystem
     virtual void CleanObjectFiles() const = 0;
 
 	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface) = 0;
+	virtual void RemoveObjectConstructors(IPerModuleInterface* pPerModuleInterface) = 0;
 
 	//ensure subclasses are deleted correctly
 	virtual ~IRuntimeObjectSystem(){};

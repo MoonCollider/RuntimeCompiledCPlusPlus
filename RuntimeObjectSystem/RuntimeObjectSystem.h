@@ -120,6 +120,7 @@ public:
      }
  
 	virtual void SetupObjectConstructors(IPerModuleInterface* pPerModuleInterface);
+	virtual void RemoveObjectConstructors(IPerModuleInterface* pPerModuleInterface);
 
      // exception handling to catch and protect main app from crashing when using runtime compiling
     virtual void SetProtectionEnabled( bool bProtectionEnabled_ );

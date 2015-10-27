@@ -40,6 +40,7 @@ struct IObjectFactorySystem
 	virtual ConstructorId GetConstructorId( const char* type ) const = 0;
 	virtual IObjectConstructor* GetConstructor( ConstructorId id ) const = 0;
 	virtual void AddConstructors(IAUDynArray<IObjectConstructor*> &constructors) = 0;
+	virtual void RemoveConstructors(IAUDynArray<IObjectConstructor*> &constructors) = 0;
 	virtual void GetAll(IAUDynArray<IObjectConstructor*> &constructors) const = 0;
 	virtual IObject* GetObject( ObjectId id ) const = 0;
 

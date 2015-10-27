@@ -47,6 +47,7 @@ public:
 	virtual ConstructorId GetConstructorId( const char* type ) const;
 	virtual IObjectConstructor* GetConstructor( ConstructorId id ) const;
 	virtual void AddConstructors(IAUDynArray<IObjectConstructor*> &constructors);
+	virtual void RemoveConstructors(IAUDynArray<IObjectConstructor*> &constructors);
 	virtual void GetAll(IAUDynArray<IObjectConstructor*> &constructors) const;
 	virtual IObject* GetObject( ObjectId id ) const;
 

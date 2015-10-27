@@ -305,6 +305,26 @@ void ObjectFactorySystem::AddConstructors( IAUDynArray<IObjectConstructor*> &con
 	}
 }
 
+void ObjectFactorySystem::RemoveConstructors(IAUDynArray<IObjectConstructor*> &constructors)
+{
+	if (m_pLogger) m_pLogger->LogInfo("Destroying Auto Construct Singletons...\n");
+	for (size_t i = 0; i < constructors.Size(); ++i)
+	{
+		IObjectConstructor* pConstructor = constructors[i];
+		if (pConstructor->GetIsAutoConstructSingleton())
+		{
+			if (0 != pConstructor->GetNumberConstructedObjects())
+			{
+				IObject* pObj = pConstructor->GetSingleton();
+				delete pObj;
+				AU_ASSERT(0 == pConstructor->GetNumberConstructedObjects());
+			}
+		}
+	}
+
+	// TODO: Actually remove the constructors.
+}
+
 void ObjectFactorySystem::GetAll(IAUDynArray<IObjectConstructor*> &constructors) const
 {
 	constructors.Resize(m_Constructors.size());

@@ -420,6 +420,21 @@ void RuntimeObjectSystem::SetupObjectConstructors(IPerModuleInterface* pPerModul
 
 }
 
+void RuntimeObjectSystem::RemoveObjectConstructors(IPerModuleInterface* pPerModuleInterface)
+{
+
+	// get hold of the constructors
+	const std::vector<IObjectConstructor*> &objectConstructors = pPerModuleInterface->GetConstructors();
+	AUDynArray<IObjectConstructor*> constructors(objectConstructors.size());
+	for (size_t i = 0, iMax = objectConstructors.size(); i < iMax; ++i)
+	{
+		constructors[i] = objectConstructors[i];
+	}
+
+	m_pObjectFactorySystem->RemoveConstructors(constructors);
+
+}
+
 void RuntimeObjectSystem::SetupRuntimeFileTracking(const IAUDynArray<IObjectConstructor*>& constructors_)
 {
 #ifndef RCCPPOFF
